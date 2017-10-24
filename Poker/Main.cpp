@@ -93,6 +93,9 @@ void play() {
 	deck = generateDeck();
 	discards = new Deck();
 
+	// Swap Mode Instructions
+	cout << "For Swap Mode add '_' before choosing cards to replace e.g. _ABCDE\n";
+
 	// Round loop
 	while (!isDone) {
 		string userInput;
@@ -126,7 +129,7 @@ void play() {
 			string userCardSwap;
 			string newCardsText = "New Cards:";
 			bool isSwapMode = false;
-			userCardSwap = getUserInput("Which cards do you want to trade? ([*CardLetter* or NONE] or [DECK]): ");
+			userCardSwap = getUserInput("Which cards do you want to trade? ([_][*CardLetter* or NONE] or [DECK]): ");
 			if (userCardSwap == "DECK") {
 				outputDeck(deck);
 				continue;
