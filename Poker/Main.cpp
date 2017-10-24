@@ -222,6 +222,23 @@ void play() {
 	// Delete deck when done
 	delete deck;
 	delete discards;
+	CardNode* current = deck->head;
+	while (current != nullptr) {
+		CardNode* temp = current;
+		current = current->next;
+		delete temp->card;
+		delete temp;
+	}
+	current = discards->head;
+	while (current != nullptr) {
+		CardNode* temp = current;
+		current = current->next;
+		delete temp->card;
+		delete temp;
+	}
+	for (int x = 0; x < 5; x++) {
+		delete player.cards[0];
+	}
 }
 
 // Check for a win condition
@@ -313,9 +330,7 @@ void checkForWin(Player* player) {
 	}
 
 	player->mulah += winnings;
-	cout << "+$" << winnings << " " << results << endl;
-
-	//delete[] cards;
+	cout << "+$" << winnings << " " << results << endl; 
 }
 
 // Check if you have a straight
