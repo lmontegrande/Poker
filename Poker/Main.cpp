@@ -48,7 +48,7 @@ void drawCard(Player* player, Deck* deck, Deck* discards, bool isSwapMode);
 Card* takeCardFromDeck(Deck* deck, Deck* discards, bool isSwapMode);
 void play();
 void discardCard(Player* player, int cardNum, Deck* deck, Deck* discards);
-void outputHand(Player* player, bool beenSwapped[5]);
+void outputHand(Player* player, bool beenSwapped[]);
 void SwapCard(Player* player, int cardNum, Deck* deck, Deck* discards, bool isSwapMode);
 void checkForWin(Player* player);
 bool isStraight(Card* cards[5]);
@@ -102,11 +102,11 @@ void play() {
 		bool validInput = false;
 		cout << "Player Mulah: $" << player.mulah << endl;
 		while (!validInput) {
-			userInput = getUserInput("Take Money and Leave? (y/n): ");
-			if (userInput == "y") {
+			userInput = getUserInput("Take Money and Leave? (Y/N): ");
+			if (userInput == "Y") {
 				isDone = true;
 				return;
-			} else if (userInput == "n") {
+			} else if (userInput == "N") {
 				validInput = true;
 			} else {
 				cout << "INVALID INPUT" << endl;
@@ -574,6 +574,10 @@ string getUserInput(string message) {
 	string userInput = "";
 	cout << message;
 	cin >> userInput;
+
+	for (int x = 0; x < userInput.length(); x++) {
+		userInput[x] = toupper(userInput[x]);
+	}
 
 	cin.clear();
 	cin.ignore(10000, '\n');
